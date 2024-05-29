@@ -1,0 +1,36 @@
+.box {
+  /* width: 100%; */
+  /* height: 100%; */
+  background-color: var(---color-paper);
+  border-radius: rem(12);
+  box-shadow: var(--mantine-shadow-xs);
+  padding: var(--mantine-spacing-md);
+}
+.stackMain {
+  width: calc(100% - (rem(330) + var(--mantine-spacing-md)));
+}
+
+.boxBal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.balanceRingCenter {
+  background-color: rgba(197, 197, 197, 0.15);
+  border-radius: rem(100);
+  padding: rem(12);
+  padding-top: rem(24);
+  padding-bottom: rem(24);
+}
+.stepperStep {
+  width: calc(100% + rem(16));
+  border-top: rem(1) dashed rgba(187, 233, 206, 0.3);
+  border-bottom: rem(1) dashed rgba(187, 233, 206, 0.3);
+  border-right: rem(1) dashed rgba(187, 233, 206, 0.3);
+  padding-top: var(--mantine-spacing-lg);
+  padding-bottom: var(--mantine-spacing-lg);
+  padding-right: var(--mantine-spacing-md);
+  padding-left: var(--mantine-spacing-md);
+  border-radius: 0 var(--mantine-radius-lg) var(--mantine-radius-lg) 0;
+  margin-left: rem(-16);
+}

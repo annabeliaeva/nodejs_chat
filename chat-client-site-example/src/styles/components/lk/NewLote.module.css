@@ -1,0 +1,19 @@
+.box {
+  width: 100%;
+  overflow-y: auto;
+  /* max-height: rem(850); */
+  background-color: var(---color-paper);
+  border-radius: var(--mantine-radius-lg);
+  box-shadow: var(--mantine-shadow-xs);
+  padding: var(--mantine-spacing-md);
+  overflow-x: hidden;
+}
+.loteCard {
+  width: 100%;
+  background-color: var(---color-paper);
+  border-radius: var(--mantine-radius-lg);
+  box-shadow: var(--mantine-shadow-sm);
+  padding: var(--mantine-spacing-sm);
+  cursor: pointer;
+  min-height: rem(64px);
+}

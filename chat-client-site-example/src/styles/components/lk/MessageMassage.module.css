@@ -1,0 +1,195 @@
+.message {
+  display: inline;
+  margin: 0;
+  padding: rem(8px) rem(10px);
+  border-radius: var(--mantine-radius-md);
+  max-width: rem(250px);
+  position: relative;
+}
+
+.userMessage {
+  background-color: light-dark(var(--mantine-color-gray-2),
+      var(--mantine-color-gray-0));
+  margin-left: auto;
+}
+.userMessage .text {
+  text-align: right;
+}
+.userMessage:first-child {
+  border-radius: var(--mantine-radius-md) var(--mantine-radius-lg) var(--mantine-radius-md) var(--mantine-radius-md);
+}
+
+.userMessage:last-child {
+  border-radius: var(--mantine-radius-md) var(--mantine-radius-md) var(--mantine-radius-md) var(--mantine-radius-lg);
+}
+
+.botMessage {
+  background-color: light-dark(var(--mantine-color-green-4),
+      var(--mantine-color-green-4));
+  margin-right: auto;
+}
+
+.text {
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 400;
+  color: var(--mantine-color-dark-6);
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+.image {
+  /* width: 100%; */
+  /* max-width: rem(250px); */
+  height: 100% !important;
+  width: 100% !important;
+  /* border-radius: var(--mantine-radius-sm); */
+  object-fit: contain;
+  object-position: center;
+  /* pointer-events: none; */
+  /* user-select: none; */
+  cursor: pointer;
+  overflow: hidden;
+  /* position: absolute; */
+  /* left: 50%; */
+  /* top: 50%; */
+  /* transform: translate(-50%, -50%); */
+}
+
+.messageMessageWithImages {
+  position: relative;
+  max-width: rem(250px);
+  display: flex;
+  flex-flow: row wrap;
+  gap: 4px;
+  /* background-color: light-dark(var(--mantine-color-gray-2),
+      var(--mantine-color-gray-0)); */
+}
+
+.messageMessageWithImages__text{
+  margin-top: rem(8px);
+}
+
+.imageWrapper {
+  position: relative;
+  min-height: rem(80px);
+  max-height: rem(200px);
+  /* max-width: rem(250px); */
+  overflow: hidden;
+  /* outline: 1px solid #000; */
+  background-color: light-dark(var(--mantine-color-gray-8),
+      var(--mantine-color-gray-0));
+
+  border-radius: var(--mantine-radius-sm);
+  min-width: calc(6.25rem* var(--mantine-scale));
+}
+
+.imageWithoutTextState {
+  position: absolute;
+  bottom: rem(16px);
+  right: rem(16px);
+  padding: rem(4px) rem(6px);
+  border-radius: var(--mantine-radius-md);
+  background-color: light-dark(var(--mantine-color-gray-3),
+      var(--mantine-color-gray-3));
+  /* background: rgb(230, 230, 230); */
+}
+
+.imageWithoutTextState .iconCheck {
+  margin-inline-start: 0px;
+  margin-top: 0px;
+}
+
+.imageWrapperMin {
+  max-width: 100%;
+  border-radius: var(--mantine-radius-sm);
+}
+
+.imageWrapperMin:not(:first-child) {
+  max-height: 80px;
+}
+
+
+.messageMessageWithImagesEven>.imageWrapperMin:last-child {
+  max-width: 100%;
+  margin: 0 auto;
+  max-height: 80px;
+}
+
+.imageWrapperMin:not(:first-child) {
+  max-width: calc(50% - 2px);
+  max-height: 150px;
+}
+
+
+.imageLoading {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(220, 220, 220, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: 1;
+  opacity: 1;
+  transition: all 0.14s ease-in-out;
+}
+
+.imageLoadingDone {
+  opacity: 0;
+}
+
+.imageLoadingProgress {
+  padding: 4px 8px;
+  border-radius: 12px;
+  background: rgba(38, 38, 38, 0.75);
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  position: absolute;
+  right: 4px;
+  top: 4px;
+}
+
+.iconCheck {
+  margin-inline-start: 10px;
+  float: right;
+  margin-top: 10px;
+}
+
+.previewFile {
+  position: relative;
+  max-height: rem(100px);
+  max-width: rem(100px);
+  height: 100%;
+  width: 100%;
+  background-color: light-dark(var(--mantine-color-gray-4),
+      var(--mantine-color-gray-0));
+
+  border-radius: var(--mantine-radius-md);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.previewFile img{
+  border-radius: 0;
+  height: 100%;
+  object-fit: contain;
+}
+
+.previewFileCancel {
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  border-radius: 100%;
+  background: #f23;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 4px;
+  top: 4px;
+  cursor: pointer;
+}

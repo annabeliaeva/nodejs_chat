@@ -1,0 +1,9 @@
+.btn {
+  width: 100%;
+  text-align: start;
+  border-radius: 0;
+  background-color: transparent;
+  @mixin hover {
+    background-color: var(---color-transparent-black-15);
+  }
+}

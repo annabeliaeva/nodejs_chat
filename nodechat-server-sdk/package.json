@@ -1,0 +1,36 @@
+{
+  "name": "nodechat-server-sdk",
+  "version": "1.0.0",
+  "description": "Node.js Chat SDK",
+  "main": "dist/index.js",
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "build": "ts-patch install -s && tsc"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.5.10",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "ts-node": "^10.9.2",
+    "ts-patch": "^3.1.2",
+    "ts-transform-paths": "^3.0.0",
+    "typescript": "^5.3.3",
+    "typescript-transform-paths": "^3.4.7"
+  },
+  "dependencies": {
+    "@types/uuid": "^9.0.8",
+    "pino": "^8.19.0",
+    "pino-pretty": "^10.3.1",
+    "uuid": "^9.0.1",
+    "ws": "^8.16.0"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^4.0.8"
+  },
+  "files": [
+    "dist"
+  ]
+}

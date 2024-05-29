@@ -1,0 +1,100 @@
+.box {
+  width: 100%;
+  height: 100%;
+  background-color: var(---color-paper);
+  border-radius: 0;
+  box-shadow: var(--mantine-shadow-xs);
+  padding: var(--mantine-spacing-md);
+}
+.boxStory {
+  width: 100%;
+  overflow-y: auto;
+  /* max-height: rem(850); */
+  background-color: var(---color-paper);
+  border-radius: var(--mantine-radius-lg);
+  box-shadow: var(--mantine-shadow-xs);
+  padding: var(--mantine-spacing-md);
+}
+.boxText {
+  width: 100%;
+  height: 100%;
+  background-color: var(---color-paper);
+  border-radius: var(--mantine-radius-lg);
+  box-shadow: var(--mantine-shadow-xs);
+  padding: var(--mantine-spacing-md);
+}
+.boxLeft {
+  width: 100%;
+  height: 100%;
+  background-color: var(---color-paper);
+  border-radius: var(--mantine-radius-lg) 0 0 var(--mantine-radius-lg);
+  box-shadow: var(--mantine-shadow-xs);
+  padding: var(--mantine-spacing-md);
+}
+.boxRight {
+  width: 100%;
+  height: 100%;
+  background-color: var(---color-paper);
+  border-radius: 0 var(--mantine-radius-lg) var(--mantine-radius-lg) 0;
+  box-shadow: var(--mantine-shadow-xs);
+  padding: var(--mantine-spacing-md);
+}
+.boxBalance {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--mantine-radius-lg);
+  padding: var(--mantine-spacing-xl);
+  overflow: hidden;
+}
+.boxBalanceImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+.stackBalance {
+  position: relative;
+  z-index: 2;
+}
+.th {
+  padding: 0;
+  /* min-width: 200px; */
+}
+
+.control {
+  width: 100%;
+  padding: var(--mantine-spacing-xs) var(--mantine-spacing-md);
+  /* min-width: 200px; */
+  @mixin hover {
+    background-color: light-dark(
+      var(--mantine-color-gray-0),
+      var(--mantine-color-dark-6)
+    );
+  }
+}
+
+.icon {
+  width: rem(21);
+  height: rem(21);
+  border-radius: rem(21);
+}
+
+.tablePaySystem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: rem(10);
+}
+
+.tableOneRowShop {
+  display: flex;
+  align-items: center;
+  gap: rem(5);
+}

@@ -1,0 +1,213 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/db"
+}
+
+generator jsonSchema {
+  provider = "prisma-json-schema-generator"
+  output   = "./json/db"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+enum AuthMethod {
+  EMAILCODE
+  TELEGRAM
+  YANDEX
+  GOOGLE
+  VK
+}
+
+model User {
+  id          Int      @id @default(autoincrement())
+  login       String   @unique @db.VarChar(24)
+  email       String   @unique @db.VarChar(36)
+  reg_date    DateTime @default(now()) @db.Date
+  last_active DateTime @default(now())
+  avatar_url  String?
+
+  reviews           Review[]
+  authorization     Authorization[]
+  lots              Lot[]
+  balance           UserBalance?
+  financeOperations FinanceOperation[]
+  orders            Order[]
+}
+
+model UserBalance {
+  user_id Int @id
+  balance Int @default(0)
+  bonuses Int @default(0)
+
+  user User @relation(fields: [user_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+}
+
+model Authorization {
+  user_id    Int
+  method     AuthMethod
+  identifier String
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@id([user_id, method])
+}
+
+model AuthorizationEmailRequest {
+  email            String   @id @db.VarChar(36)
+  code             Int
+  request_datetime DateTime @default(now()) @db.Timestamp()
+}
+
+model Review {
+  id       Int @id @default(autoincrement())
+  order_id Int @unique
+  to_id    Int @unique
+
+  stars Int    @db.SmallInt
+  text  String @db.Text
+
+  to    User  @relation(fields: [to_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  order Order @relation(fields: [order_id], references: [id])
+}
+
+model Game {
+  id           Int    @id @default(autoincrement())
+  name         String @db.VarChar(32)
+  description  String @db.Text
+  icon_url     String @db.Text
+  bg_image_url String @db.Text
+
+  categories GameCategory[]
+}
+
+model Category {
+  id           Int     @id @default(autoincrement())
+  name         String  @db.VarChar(24)
+  countable    String  @db.VarChar(12) // Если не NULL, можно купить > 1
+  has_autosell Boolean // Есть ли автоматическая продажа 
+
+  gameCategory GameCategory[]
+}
+
+enum FieldType {
+  SHORT_TEXT
+  LONG_TEXT
+  SELECT
+}
+
+model Field {
+  id   Int       @id @default(autoincrement())
+  name String    @db.VarChar(36)
+  type FieldType
+  data Json
+
+  gameCategory            GameCategory? @relation(fields: [gameCategoryGame_id, gameCategoryCategory_id], references: [game_id, category_id])
+  gameCategoryGame_id     Int?
+  gameCategoryCategory_id Int?
+}
+
+model GameCategory {
+  game_id     Int
+  category_id Int
+  field_ids   Int[]
+  description String @db.Text // SEO
+
+  game     Game     @relation(fields: [game_id], references: [id])
+  category Category @relation(fields: [category_id], references: [id])
+  fields   Field[]
+
+  @@id([game_id, category_id])
+}
+
+enum LotType {
+  BUY
+  SELL
+}
+
+enum LotStatus {
+  ACTIVE
+  INACTIVE
+  SOLD
+}
+
+model Lot {
+  id         Int       @id @default(autoincrement())
+  short_desc String?   @db.VarChar(256)
+  long_desc  String?   @db.VarChar(2048)
+  type       LotType
+  status     LotStatus
+  quantity   Int       @default(1) @db.Integer
+  autosell   Boolean   @default(false)
+  owner_id   Int
+
+  owner  User    @relation(fields: [owner_id], references: [id])
+  orders Order[]
+}
+
+enum OrderStatus {
+  DONE
+  AWAIT_CONFIRMATION
+}
+
+model Order {
+  id      Int         @id @default(autoincrement())
+  user_id Int
+  lot_id  Int
+  sum     Float
+  date    DateTime    @default(now()) @db.Timestamp()
+  status  OrderStatus @default(AWAIT_CONFIRMATION)
+
+  review Review?
+  lot    Lot?    @relation(fields: [lot_id], references: [id])
+  user   User    @relation(fields: [user_id], references: [id])
+}
+
+enum FinanceOperationType {
+  BUY // Покупка
+  SELL // Продажа
+  WITHDRAW // Снятие
+  DEPOSIT // Пополнение
+  FINE // Изъятие
+  RETURN // Возврат
+}
+
+enum Currency {
+  RUB
+  USD
+  EUR
+}
+
+enum FinancePaymentWall {
+  SBER
+  TINKOFF
+  SBP
+  USDT
+  CARD
+}
+
+enum FinanceStatus {
+  DONE
+  ERROR
+  PROCESSING
+}
+
+model FinanceOperation {
+  id         Int                  @id @default(autoincrement())
+  user_id    Int
+  date       DateTime             @default(now()) @db.Timestamp()
+  type       FinanceOperationType
+  subject_id Int?
+  sum        Float
+  currency   Currency
+  paywall    FinancePaymentWall
+  status     FinanceStatus
+  info       Json?
+
+  user User @relation(fields: [user_id], references: [id])
+}

@@ -1,0 +1,41 @@
+.badgeMassage {
+  border-radius: rem(4px);
+}
+.badgeMassageMobile {
+  border-radius: rem(4px);
+  position: absolute;
+  right: rem(8px);
+  top: rem(32px);
+}
+.chatMassage {
+  height: rem(105px);
+  max-width: rem(380px);
+  border-bottom: 1px solid
+    light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+  @mixin hover {
+    background-color: light-dark(
+      var(--mantine-color-gray-0),
+      var(--mantine-color-dark-4)
+    );
+    cursor: pointer;
+  }
+}
+.chatMassageMobile {
+  position: relative;
+  border-bottom: 1px solid
+    light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+  /* max-width: rem(380px); */
+  max-height: rem(140px);
+  padding: rem(8px);
+}
+.textUser {
+  overflow: hidden;
+}
+.textUserTxt {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

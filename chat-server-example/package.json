@@ -1,0 +1,26 @@
+{
+  "name": "-chat-server",
+  "version": "1.0.0",
+  "description": "BAZA Chat server",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./src/index.ts --no-cache",
+    "build": "tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.6",
+    "nodemon": "^3.1.0",
+    "pino-pretty": "^10.3.1",
+    "prisma": "^5.11.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.2"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.11.0",
+    "amqplib": "^0.10.3",
+    "jsonwebtoken": "^9.0.2",
+    "node-json-db": "^2.3.0"
+  }
+}
